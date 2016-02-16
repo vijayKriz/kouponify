@@ -29,7 +29,7 @@ kouponify.coupon (
 coupon_id bigint(20) NOT NULL AUTO_INCREMENT,
 code varchar(126) DEFAULT NULL,
 discount_type varchar(50) DEFAULT NULL,
-applies_to_resource  varchar(55) NOT NULL,
+applies_to_resource  varchar(55) DEFAULT NULL,
 value double DEFAULT NULL,
 starts_at bigint(20) NOT NULL,
 ends_at bigint(20) NULL,
