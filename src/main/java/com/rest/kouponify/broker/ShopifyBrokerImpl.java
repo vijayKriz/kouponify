@@ -78,7 +78,7 @@ public class ShopifyBrokerImpl implements ShopifyBroker {
      */
     private String refreshAccessToken() {
         //TODO replace static access token
-        return ACCESS_TOKEN;
+        return HttpUtil.ACCESS_TOKEN;
     }
 
 
