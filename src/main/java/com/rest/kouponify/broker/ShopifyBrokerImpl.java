@@ -1,9 +1,7 @@
 package com.rest.kouponify.broker;
 
-import com.fasterxml.jackson.databind.AnnotationIntrospector;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
 import com.rest.kouponify.common.HttpUtil;
 import com.rest.kouponify.entity.Order;
 import lombok.extern.slf4j.Slf4j;
@@ -25,15 +23,12 @@ import java.util.List;
 @Slf4j
 public class ShopifyBrokerImpl implements ShopifyBroker {
 
-    private final String CLIENT_ID = "****************************";
-    private final String CLIENT_SECRET = "****************************";
     //TODO make this url dynamic to support for multiple client shop
     private String CLIENT_URL = "https://kouponify.myshopify.com/admin/";
     private String REDIRECT_URL = "https://localhost:8080/kouponify/";
     private String nonce = "bizzyCode";
     private String SCOPE = "write_products,write_customers,write_orders,read_products,read_customers,read_orders";
-    private String ACCESS_CODE = "****************************";
-    private String ACCESS_TOKEN = "****************************";
+
 
 
     /**
@@ -45,7 +40,7 @@ public class ShopifyBrokerImpl implements ShopifyBroker {
         StringBuffer AUTH_URL = new StringBuffer();
         AUTH_URL.append(CLIENT_URL);
         AUTH_URL.append("oauth/authorize?client_id=");
-        AUTH_URL.append(CLIENT_ID);
+        AUTH_URL.append(HttpUtil.CLIENT_ID);
         AUTH_URL.append("&scope=");
         AUTH_URL.append(SCOPE);
         AUTH_URL.append("redirect_uri=");
@@ -69,9 +64,9 @@ public class ShopifyBrokerImpl implements ShopifyBroker {
         OAUTH_URL.append(CLIENT_URL);
         OAUTH_URL.append("oauth/access_token");
         List<NameValuePair> codeObj = new ArrayList<>();
-        codeObj.add(new BasicNameValuePair("client_id", CLIENT_ID));
-        codeObj.add(new BasicNameValuePair("client_secret", CLIENT_SECRET));
-        codeObj.add(new BasicNameValuePair("code", ACCESS_CODE));
+        codeObj.add(new BasicNameValuePair("client_id", HttpUtil.CLIENT_ID));
+        codeObj.add(new BasicNameValuePair("client_secret",HttpUtil.CLIENT_SECRET));
+        codeObj.add(new BasicNameValuePair("code", HttpUtil.ACCESS_CODE));
         JSONObject object = HttpUtil.doPost(OAUTH_URL.toString(), codeObj);
         return object.getString("access_token");
     }

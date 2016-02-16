@@ -19,8 +19,11 @@ import java.util.List;
  */
 public class HttpUtil {
 
-    private static String SHOPIFY_AUTH_HEADER = "X-Shopify-Access-Token";
-    private static String ACCESS_TOKEN = "****************************";
+    public static String SHOPIFY_AUTH_HEADER = "X-Shopify-Access-Token";
+    public static String ACCESS_TOKEN = "****************************";
+    public static String ACCESS_CODE = "****************************";
+    public static String CLIENT_ID = "****************************";
+    public static String CLIENT_SECRET = "****************************";
 
     public static JSONObject doGet(String URL) throws IOException{
         CloseableHttpClient httpclient = HttpClients.createDefault();
